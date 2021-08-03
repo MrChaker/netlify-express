@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../cmmn-things/head.ejs') %>
+
+<body>
+<%- include('../cmmn-things/nav.ejs') %>
+    
+    <form class="Form" action="/Orders" method="post">
+        
+        
+        <label for="Extra_info" >Enter more information about you</label>
+            <textarea id="Extra_info" name="Extra_info" required></textarea>
+        <button type="submit" class="btn">Submit</button>
+
+    </form>
+    <%- include('../cmmn-things/footer.ejs') %>
+    <script src="/navscript.js"></script>
+</body>
+</html>    

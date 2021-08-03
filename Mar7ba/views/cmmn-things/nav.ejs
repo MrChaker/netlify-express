@@ -1,0 +1,36 @@
+
+<nav class="nav">  
+        <%- include('logo.ejs') %>
+        <div class="search">
+            <div>
+              <input type="text" placeholder="Search . . ." required>
+            </div>
+        </div>
+    <ul>     
+        <%if(user){%>
+        <li id="imgnav">           
+            <div>
+                <% if (!user.image.path){%>
+                <img src="/images/account.png" alt="profileimg">
+                <%}else{ %>
+                <img src="<%= user.image.path %>" alt="profileimg">
+                <%}%>
+            </div>
+            <li > <a href="/Profile"><%= user.username %></a></li>
+            <li class="drop"><img src="/images/down-arrow.png" alt="drop"></li>
+        </li>
+    </ul>
+    <div class="dropmenu">
+         <a href="/Profile">Go to Profile</a>
+         <a href="/Orders">Main page</a>
+        <a href="/auth/logout"><div class="btn">logout</div></a>
+    </div>
+    <%}else{%>
+        <li>
+            <div class="auth">
+                <a href="/auth/log-in"><div class="authp">Log in</div></a>
+                <a href="/auth/Sign-in"><div class="authp btn">Sign in</div></a>
+            </div>
+        </li>
+     <%}%>    
+</nav>

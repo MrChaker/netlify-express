@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('../cmmn-things/head.ejs') %>
+
+<body>
+    <div class="popup">
+        <%- include('../cmmn-things/nav.ejs') %>
+        <div class="container profcont">
+            <div class="Profile">
+                <div class="front">
+                    <div class="image">
+                        <% if (!user.image.path){%>
+                        <img src="/images/account.png" alt="profileimg">
+                        <%}else{ %>
+                        <img src="<%= user.image.path.substring(1) %>" alt="profileimg">
+                        <%}%>
+                        <div class="upload">
+                            <img src="/images/photo-camera.png" alt="upload">
+                        </div>
+                    </div>
+                    <span><%= user.username%></span>
+                    <div class="description" id="des" data-doc="<%= user.description%>">
+                        <div class="upload uploades">
+                            <img src="https://image.flaticon.com/icons/png/512/1659/1659682.png" alt="edit">
+                        </div >
+                        <%= user.description%>
+                    
+                    </div>
+                    <div class="description social2">
+                        <a href=""><img src="/images/socials/facebook.png" alt="fb"></a>
+                        <a href=""><img src="/images/socials/instagram.png" alt="in"></a>
+                        <a href=""><img src="/images/socials/whatsapp.png" alt="wa"></a>
+
+                    </div>
+                    
+                    
+                </div>
+                <div class="Profileinfo">
+                    <div class="profnav">
+                        <ul>
+                            <li class="active">General information</li>
+                            <li>Portfolio</li>
+                            <li>Reviews</li>
+                            <li></li>
+                        </ul>
+                    </div>
+                    <div class="profbody">
+                        <div class="generalinfo el">
+            
+                            <form >
+                                <div class="name">
+                                    <div class="div">
+                                        <label for="firstname">First name :</label>
+                                        <input type="text" name="firstname" id="fname" >
+                                    </div>
+                                    <div class="div">
+                                        <label for="firstname">Last name :</label>
+                                      <input type="text" name="lastname" id="lname" >
+                                    </div>
+                                 
+                                </div>
+                                <label for="Job">Job :</label>
+                                <select name="Job" class="Select" >
+                                    <option value="job">Select a job</option>
+                                    <option value="Painter">Painter</option>
+                                    <option value="Electrician">Electrician</option>
+                                    <option value="Chef">Chef</option>
+                                    <option value="Plumber">Plumber</option>
+                                    <option value="Mechanic">Mechanic</option>
+                                    <option value="Builder">Builder</option>
+                                </select>
+                                <label for="Wilaya">Wilaya :</label>
+                                <select name="Wilaya" class="Select" >
+                                    <option value="job">Select your Wilaya</option>
+                                    <%- include('./wilayas.ejs')%>                                
+
+                                </select>
+                                <label for="Phone">Phone number:</label>
+                                <input type="tel" name="phone" id="phone" pattern="0[5-7][0-9]{8}">
+                                <label for="full adress">full adress :</label>
+                                <input type="text" name="fulladress" id="fulladress" >
+                                <input class="btn btn3"type="submit" value="Register">
+                                
+                            </form>
+                            
+                            <div class="registerged">                               
+                                    <div class="job">
+                                        <div>Full name </div>
+                                    <div class="span2">
+                                        <%= user.info.lname%>
+                                        <%= user.info.fname%>
+                                    </div>                                         
+                                    </div>                                                                   
+                                <div class="job">
+                                    <div>Job  </div>
+                                    <div class="span2"><%= user.info.job%></div> 
+                                </div>
+                                <div class="job">
+                                    <div>Wilaya  </div>
+                                    <div class="span2"><%= user.info.Wilaya%></div> 
+
+                                </div>
+                                <div class="job">
+                                    <div>Phone number   </div>
+                                    <div class="span2"><%= user.info.phone%></div> 
+                                </div>
+                                <div class="job">
+                                    <div>Full Adress   </div>
+                                    <div class="span2"><%= user.info.fulladress%></div> 
+                                </div>
+                                <div class="btn btn4">Update your information</div>
+                            </div>
+                            
+                        </div>
+                        <div class="portfolio el" >
+                             <%if(!user.portfolio){%>
+                                <h2 style="text-align: center;">You have nothing to show in your portfolio !!</h2>
+                             <%}else{%>
+                                
+                                 <!-- Container for the image gallery -->
+                                    <div class="portcontainer">
+                                        <!-- Full-width images with number text -->
+                                        <% user.portfolio.path.forEach(path=>{%>
+                                        <div class="mySlides">                                     
+                                            <img src="<%= path%>" style="width:100%">
+                                        </div>
+                                        <%})%>                                 
+                                        <!-- Next and previous buttons -->
+                                        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                                        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+                                    
+                                        <!-- Image text -->
+                                        <div class="caption-container">
+                                        <p id="caption"></p>
+                                        </div>
+                                    
+                                        <!-- Thumbnail images -->
+                                        <div class="row">
+                                          
+                                        <% for(let i =0; i< user.portfolio.path.length ; i++ ){%>
+                                        <div class="column" ">
+                                            <img class="demo cursor num<%=i+1%>" data-doc="<%= i+1%>" src="<%=user.portfolio.path[i]%>" style="width:100%" alt="<%=user.portfolio.title[i]%>" >
+                                        </div>
+                                        <%}%>
+                                        </div>
+                                    </div> 
+                                
+                             <%}%>   
+                             <div class="btn upload2" style="width: 30%;margin: auto;">+ Add a work</div>
+                        </div>
+                        <div class="reviews el">
+                            There are no reviews yet !!
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <%- include('../cmmn-things/footer.ejs') %>
+    </div>
+    <form class='profimg' method="POST" action="/Profile" enctype="multipart/form-data">
+        <div>
+            <label>Upload profile picture</label>
+            <input   id="filee" type="file" name="profilefile" required/>
+        </div>
+        <div class="upbtn">
+            <input class="btn " type="submit" value="Upload" />
+        </div>
+        <div class="exit">X</div>
+    </form>
+    <div class="uploadform2">
+        <form >
+            <label for="description">Add description :</label>
+            <textarea name="description" id="" cols="30" rows="10"></textarea>
+            <div class="upbtn">
+                <input class="btn" type="submit" value="Submit" />
+            </div>
+            <div class="exit">X</div>
+        </form>
+    </div>
+    <div class="uploadform3">
+        <form class='' method="POST" action="/Profile/info" enctype="multipart/form-data">
+            <div>
+                <label for="ptitle">Add title</label>
+                <input type="text" name="ptitle">
+                <label>Add an image</label>
+                <input   id="file" type="file" name="portfoliofile" />
+            </div>
+            <div class="upbtn">
+                <input class="btn " type="submit" value="Upload" />
+            </div>
+            <div class="exit">X</div>
+    </div>
+    <script src="/Profilescript.js"> </script>
+    <script src="/protscript.js"></script>
+
+    <script src="/navscript.js"></script>
+</body>
+</html>

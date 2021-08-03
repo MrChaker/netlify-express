@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../cmmn-things/head.ejs') %>
+    <style>
+        nav{
+            background: rgb(240, 235, 235);
+        }
+        .navul li{
+            color: black;
+        }
+        .naverr{
+            height: 15vh;
+        }
+        .infocont{
+            display: grid;
+            grid-template-columns: auto auto;
+            grid-template-rows: auto auto;
+
+        }
+        h6{
+            color: black;
+            font-size: 3rem;
+
+        }
+        p{
+            color: black;
+            font-size: 2rem;
+        }
+        .trash{
+            width: 32%;
+            padding: 1.3rem;
+            background: rgb(173, 169, 169);
+            color: black;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <%- include('../cmmn-things/nav.ejs') %>
+    <div class="naverr"></div>
+    <div class="infocont">
+        <h6><%= offer.User %></h6>
+        <a class="trash" data-doc="<%= offer._id %>">✖️ delete your offer</a>
+        <p><%= offer.Extra_info%></p>
+    </div>
+    
+    <script>
+        const trash = document.querySelector('.trash');
+        trash.addEventListener('click', (e)=>{
+            const endpoint = `/Orders/${trash.dataset.doc}`;
+             fetch(endpoint,{
+                  method: "DELETE"
+             })
+             .then((response)=> response.json())
+             .then((data)=> window.location.href = data.redirect)  
+             .catch(err => console.log(err));
+        })
+    </script>
+
+</body>
+</html>

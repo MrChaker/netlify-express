@@ -1,0 +1,689 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+:root{
+    
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
+    --text-color : black;
+    --text-color2 : white;
+    --text-color3: grey;
+    --bgkcolor : white;
+    --bgkcolor2 : transparent;
+    --orange : #FF5C00;
+    --orange2 : #f53900;
+    --textcolor : black;
+    --bgkcolor1 : white;
+    --bgkcolor3: rgb(239 239 239);
+    --shadow : #bdbdb0a3;
+    --shadow2 : #bdbdb0;
+    --border : black ;
+    --bgkcolor4 : black;
+    --err : rgb(158, 17, 17);
+}
+button{
+    outline: none;
+    border: none;
+}
+/* body{    
+   /* height: 200vh; 
+} */
+a{
+    text-decoration: none;
+}
+main{
+    background-color: var(--bgkcolor);
+    transition: 0.5s;
+    margin-top: -16px;
+}
+#pointer{
+    position: fixed;
+    top: 0;
+     width: 100%;
+     z-index: 100;
+     background-color: var(--bgkcolor);
+    transition: 0.5s;
+
+}
+li {
+    margin-left: 5px;
+    color: var(--text-color);
+    margin-left: 25px;
+
+}
+#pointer li{
+    cursor: pointer;
+}
+li.act{
+    border-bottom: 2px solid var(--text-color);
+}
+.visible{
+    height: 40px;
+    position: fixed;
+    top: 16%;
+    right: 3%;
+    cursor: pointer;
+    z-index: 100;
+}
+.invisible{
+    display: none;
+    position: fixed;
+}
+.auth{
+    display: flex;
+    align-content: center;
+    height: 50%;
+    margin: auto 5px;
+}
+.auth a{
+    height:inherit;
+    margin: inherit;
+}
+.authp{
+    color: var(--text-color);
+    padding: 10px;
+
+}
+.btn{
+    background-color: var(--orange);
+    padding: 10px;
+    color: var(--text-color2);
+    border-radius: 12px;
+    text-align: center;
+    transition: 0.5s;
+    cursor: pointer;
+}
+.btn:hover,
+.authp:hover{
+    background-color: var(--orange2);
+    padding: 10px;
+    color: var(--text-color2);
+    border-radius: 12px;
+    text-align: center;
+    transition: 0.5s;
+    cursor: pointer;
+}
+.welcome{
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    width: 100%;
+    margin: 100px 0 175px 0;
+}
+.welcome .start{
+    width: 50%;
+    min-width: 400px;
+
+}
+.welcome .start a{
+    display: block;
+    width: 30%;
+    margin: auto;
+
+}
+.welcome .start p{
+    color: var(--text-color);
+    font-size: 2.5rem;
+    text-align: center;
+    padding: 6rem;
+    text-shadow: 0px 1px 4px black;
+}
+.welcome .start p span{
+    
+    color: var(--text-color);
+    font-size: 1.8rem; 
+    font-weight: 400;
+}
+
+.imgcont{
+    width: 58%;
+}
+.imgcont img{
+    height: 350px;
+}
+
+.btn1{
+    width:100%;
+    font-size: 1.3rem;
+    margin-top: -4.1rem;
+}
+.how{
+    position: relative;
+}
+.how svg{
+    position: absolute;
+    top:-5%;
+    left: 55%;
+}
+ h1{
+    font-size: 3.5rem;
+    color: var(--orange);
+    text-align: center;
+    margin-bottom: 20px;
+}
+.howsteps{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-row: repeat(3, 1fr);
+    align-items: center;
+    justify-items: center;
+}
+.howsteps .contentwr{
+    width: 60%;
+    text-align: center;
+}
+.howsteps .ill {
+    display: none;
+}
+.howsteps p{
+    color: var(--text-color);
+    font-size: 2rem;
+    
+}
+.howsteps p .span1{
+    color: var(--text-color);
+    font-size: 1.5rem;
+    font-weight: 400;
+}
+.howsteps p .span2{
+    color: var(--orange);
+}
+.howsteps img{
+    max-height: 400px;
+}
+.howsteps img:nth-child(2n){
+    max-height: 500px;
+}
+.sercont{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 75%;
+    margin: auto;
+    justify-items: center;
+    grid-gap: 15px;
+}
+.sercont a{
+    width: fit-content;
+}
+.service{
+    min-height: 300px;
+    min-width: 300px;
+    box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.479);
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 30px;
+    transition: 0.5s;
+    background-color: var(--bgkcolor2);
+}
+.service:hover:nth-child(2n){  
+    transform: rotate(10deg) scale(1.1,1.1);    
+}
+.service:hover:nth-child(2n+1){  
+    transform: rotate(-10deg) scale(1.1,1.1);
+        
+}
+.service img{
+    height: 150px;
+    margin: auto;
+}
+.service h2{
+    font-size: 2rem;
+    color: black;
+    text-align: center;
+}
+.services .a{
+    display: block;
+    width: 25%;
+    margin: 50px auto;
+}
+.btn2{
+    width: 105%;
+    font-size: 2rem;
+}
+footer{
+    background-color: rgba(0, 0, 0, 0.884);
+    padding: 25px;
+    text-align: center;
+    color: white;
+}
+.footer{
+    display: flex;
+    justify-content: space-around;
+}
+footer a{
+    display: block;
+    width: fit-content;
+    margin-top: 5px;
+    font-weight: 400;
+    color: white
+}
+
+h3{
+    font-weight: 400;
+    margin: 20px 0 10px 0;
+    color: white;
+}
+.socials{
+    display: flex;
+    justify-content: space-between;
+}
+.socials img{
+    height: 80px;
+}
+/*  Profile */
+.profcont{
+    min-height: 322px;
+    background-color: #f9f9f9 ;
+}
+
+.Profile{
+    width: 100%;
+    height: 50%;
+    padding: 2rem;
+    display: flex;
+}
+.front{
+    width: 20%;
+    
+}
+.image{
+    width: 100%;
+    min-width: 100px;
+    position: relative;
+}
+.image img{
+    width: 100%;
+    height: 15vw;
+    margin: auto;
+    border-radius: 50%;
+}
+.image > img {
+    border : 2px solid black;
+}
+.upload{
+    position: absolute;
+    padding: 05px;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background-color: rgb(189 236 252);
+    box-shadow: 0px 0px 0 5px white;
+    bottom: 0;
+    right: 15px;
+    cursor: pointer;
+}
+.upload img{
+    width: 100%;
+    height:100%;
+
+}
+.profimg{
+    display: none;
+    position: fixed;
+    top: 40%;
+    left: 40%;
+    background-color: white;
+    padding: 3rem;
+    border-radius: 20px;
+    box-shadow: 0 0 20px 3px;
+
+}
+@media screen and (max-width: 660px) {
+    .profimg{
+        left: 20%;
+    }
+}
+ .exit{
+    position: absolute;
+    top: -13%;
+    right: -3%;
+    background-color: black;
+    padding: 15px;
+    border-radius: 50%;
+    color: white;
+    cursor: pointer;
+}
+.profimg label{
+    display: block;
+}
+.profimg input{
+    margin-top: 10px;
+    } 
+.profimg .upbtn{
+    width: 30%;
+    } 
+.profimg .upbtn .btn{
+    width: 130%;
+    font-size: 1.4rem;
+    } 
+.Profile span{
+    font-size: 2vw;
+    display: block;
+    text-align: center;
+    background-color: var(--bgkcolor3);
+    border-radius: 15px;
+    margin: 20px 0;
+}    
+.Profileinfo{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin-top: 40px;
+}
+.profnav{
+    margin: 0 60px 0 60px
+}
+.profnav ul{
+    display: flex;
+    list-style: none;
+}
+.profnav ul li{
+    font-size: 1.12rem;
+    padding: 10px;
+    border-radius: 15px 15px 0 0;
+    cursor: pointer;
+}
+.profnav ul li.active,
+.profnav ul li:hover
+{
+    background-color: var(--orange);
+    color: var(--text-color2);
+}
+.profbody{
+    margin: auto;
+    margin-top: 0;
+    background-color: var(--bgkcolor3);
+    width: 90%;
+    padding: 20px;
+    border-radius: 40px;
+}
+.generalinfo{
+    width: 80%;
+    margin: auto;
+}
+.profbody form {
+    display: none;
+}
+.name{
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+}
+.profbody form label,
+.uploadform3 form label{
+    display: block;
+    margin-bottom: 10px;
+}
+.profbody form input,
+.uploadform3 form input{
+    font-size: 1.1rem;
+    padding: 8px 15px;
+    border-radius: 20px;
+    border: 1px solid black;
+    margin-bottom: 20px;
+}
+
+.profbody form input:focus{
+    border: 1px solid var(--orange);
+
+}
+.Select{
+    width: 35%;
+    min-width: 200px;
+    padding: 10px;
+    font-size: 1.2rem;
+    border-radius: 20px;
+    margin-bottom: 20px;
+}
+.Select:focus{
+    border: 1px solid var(--orange);
+    outline-offset: none;
+}
+.Select option{
+    font-size: 1.2rem;
+}
+.profbody form textarea{
+    display: block;
+    width: 80%;
+    border: 2px solid black;
+    border-radius: 20px;
+    padding: 20px;
+    font-size: 1.2rem;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 500;
+}
+
+.btn3{
+    margin: 20px ;
+    width: 20%;
+    border: none;
+    box-shadow: 0 0 10px black;
+    display: block;
+}
+.registerged{
+    width: 100%;
+}
+.registerged .job{
+    display: flex;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--shadow);
+}
+.registerged div{
+    font-size: 1.3rem;
+    
+    width: 80%;
+}
+.registerged span{
+    display: inline;
+    font-weight: 700;
+    text-align: start;
+    margin-right: 100px;
+}
+.span2{
+    color: var(--text-color3);
+}
+.description{
+    background-color: var(--bgkcolor3);
+    padding: 20px;
+    border-radius: 20px;
+    position: relative;
+}
+.social2{
+    margin-top: 20px;
+    padding-left: 50px;
+}
+.social2 img{
+    margin-left : 10px;
+    height: 40px;
+}
+.uploades{
+    right:1%
+}
+.uploadform2{
+    display: none;
+    position: fixed;
+    top: 20%;
+    left: 30%;
+    background-color: white;
+    padding: 3rem;
+    border-radius: 20px;
+    box-shadow: 0 0 20px 3px;
+    
+}
+.uploadform2 label{
+    display: block;
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+}
+.uploadform2  textarea{
+    width: 500px;
+    font-size: 1.25rem;
+    border-radius: 10px;
+    padding: 10px;
+}
+.uploadform2  textarea:focus{
+    outline: none;
+}
+.uploadform2 .btn{
+    font-family: Quicksand, sans-serif;
+    font-size: 1.2rem;
+}
+.uploadform2 .exit{
+    top: -5%;
+}
+.portfolio,
+.reviews{
+    display: none;
+}
+.uploadform3{
+    display: none;
+    position: fixed;
+    top: 20%;
+    left: 30%;
+    background-color: white;
+    padding: 3rem;
+    border-radius: 20px;
+    box-shadow: 0 0 20px 3px;  
+}
+.uploadform3 .exit{
+    top:-4%
+}
+.portcard{
+    padding-top: 40px;
+    width: 49vw;
+    margin: auto;
+    margin-bottom: 20px;
+}
+.portcard img{
+    height: 30.6vw;
+    border-radius: 20px 20px 0 0;
+    
+}
+.portcard p{
+    background-color: var(--orange);
+    border-radius: 0 0 20px 20px;
+    font-size: 1.6rem;
+    padding: 15px;
+    text-align: center;
+    color: var(--text-color2);
+}
+.reviews *{
+    font-size: 1.3rem;
+}
+.reviews p{
+    color: var(--text-color);
+}
+.reviews a{
+    color: var(--orange);
+}
+
+/*Portfolio*/
+/* Position the image container (needed to position the left and right arrows) */
+.portcontainer {
+    position: relative;
+  }
+  
+  /* Hide the images by default */
+  .mySlides {
+    display: none;
+  }
+  .mySlides img{
+      max-height: 500px;
+      border-radius: 20px;
+  }
+  /* Add a pointer when hovering over the thumbnail images */
+  .cursor {
+    cursor: pointer;
+    max-height: 100px;
+  }
+  
+  /* Next & previous buttons */
+  .prev,
+  .next {
+    cursor: pointer;
+    position: absolute;
+    top: 40%;
+    width: auto;
+    padding: 16px;
+    margin-top: -50px;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+  
+  /* Position the "next button" to the right */
+  .next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+  }
+  
+  /* On hover, add a black background color with a little bit see-through */
+  .prev:hover,
+  .next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+  
+  /* Number text (1/3 etc) */
+  .numbertext {
+    color: #f2f2f2;
+    font-size: 12px;
+    padding: 8px 12px;
+    position: absolute;
+    top: 0;
+  }
+  
+  /* Container for image text */
+  .caption-container {
+    text-align: center;
+    background-color: #222;
+    padding: 2px 16px;
+    color: white;
+  }
+  
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+  /* Six columns side by side */
+  .column {
+    float: left;
+    width: 16.66%;
+  }
+  
+  /* Add a transparency effect for thumnbail images */
+  .demo {
+    opacity: 0.6;
+  }
+  
+  .active,
+  .demo:hover {
+    opacity: 1;
+  }
+.msg{
+    position: absolute;
+    top: 20%;
+    right: 10%;
+    padding: 5px 15px;
+    border-radius: 15px;
+    background-color: var(--orange);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.msg img {
+    height: 50px;
+}
+
+
+
+

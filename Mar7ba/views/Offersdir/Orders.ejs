@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../cmmn-things/head.ejs') %>
+
+<body>
+    <%- include('../cmmn-things/nav.ejs') %>
+
+    <div class="container Ocontainer">
+        <div class="sidebar">
+            <div class="operations">
+                <%if(user){%>
+                    <p><span>Hello !</span> <%= user.username%></p>
+                    <%if(user.Type == "Worker"){%>
+                        <%if(user.info.job && user.info.Wilaya){%>
+                        <a  class="btn" href="/Orders/New-offer">
+                            Add a service
+                        </a>
+                        <%}else{%>
+                            <p>Complete your profile details to add a service</p>
+                            <a  class="btn" href="#" style="cursor: not-allowed;">
+                                Add a service
+                            </a>
+                        <%}%>
+                    <%}else{%>
+                        <a  class="btn" href="/Orders/New-offer">
+                            Add a request
+                        </a>
+                    <%}%>       
+                <%}else{%>
+                    <p><a href="/auth/log-in">Log in</a><span>  to your account or </span><a href="/auth/Sign-in">Create one</a><span> to add services or requests</span></p>
+                <%}%>
+            </div>  
+            <div class="operations" >
+                <p>Menu</p>
+                <div class="cat">
+                    <p>⚫ Filter by Type</p>
+                    <select name="All" class="Select" >
+                        <option value="All">All</option>
+                        <option value="Workers services">Workers services</option>
+                        <option value="Clients requsts">Clients requsts</option>                               
+                    </select>
+                    <p>⚫ Filter by Categorie</p>
+                    <select name="All" class="Select" >
+                        <%if (filtered.Job==""){%>
+                        <option value="All">All</option>
+                        <%}else{%>
+                        <option value="<%= filtered.Job%>"><%= filtered.Job%></option>
+                        <option value="All">All</option>
+
+                        <%}%>    
+                        <option value="Painter">Painter</option>
+                        <option value="Builder">Builder</option>
+                        <option value="Mechanic">Mechanic</option>                               
+                        <option value="Chef">Chef</option>                               
+                        <option value="Electician">Electician</option>                               
+                        <option value="Plumber">Plumber</option>                               
+
+                    </select>
+                    <p>⚫ Filter by Wilaya</p>
+                    <select name="All" class="Select" >
+                        <%if (filtered.Wilaya==""){%>
+                            <option value="All">All</option>
+                            <%}else{%>
+                            <option value="<%= filtered.Wilaya%>"><%= filtered.Wilaya%></option>
+                            <option value="All">All</option>
+    
+                            <%}%> 
+                            <%- include('./wilayas.ejs')%>
+
+                                           
+                    </select>
+                    <div class="btn filter">Filter</div>
+                    <!-- <p id="te">⚫ Order by</p> -->
+                </div>
+            </div>          
+        </div>
+        <div class="Olist">
+            <div class="adspace offers">For ads</div>
+            <% var counter = 0 ; %>
+            
+            
+            <% if (offers.length > 0 ) { %>
+                <% offers.forEach((el)=>{ %>
+                    
+                    <% if (el.Available && counter < 5){ %>
+                    <!-- <span class="filter"></span> -->
+                   
+                    <div class="offers">
+                        <img src="<%= el.image%>" alt="">
+                        <div class="offers-content">
+                            <h5>User name : <%= el.User %></h5>
+                            <div class="Wilaya">Wilaya : <%= el.Wilaya %></div>
+                            <div class="Wilaya">Job : <%= el.Job %></div>
+
+                            <p><%= el.Extra_info %></p>  
+                        </div>
+                        <div>
+                            <a href="/Profile/<%= el.id %>">
+                                <button>Know more</button>
+                            </a>
+                        </div>
+                    </div> 
+                    
+                <% } %>
+            <%  counter++ })} %>
+            
+
+            <%if (counter != 0) {%>
+            <div class="pages">
+                <p class="switcher"> < </p>
+                <div class="pagecount">1</div>
+                <p class="switcher"> > </p>
+            </div>
+            <%}else{%>
+                <p id="msg">There are no offers now , come back later</p>
+            <%}%>  
+        </div>
+        
+    </div>
+    <%- include('../cmmn-things/footer.ejs') %>
+    <script src="navscript.js"></script>
+    <script src="/ejs.js"></script>
+    <script>
+        console.log("filter[0].innerHTML");
+        const select = document.querySelectorAll('.Select');
+        const filter = document.querySelector('.filter');
+        
+        filter.addEventListener('click',(e)=>{
+            console.log('hi')
+           filterer(select[1].value, select[2].value, select[0].value);
+           
+        })
+        const filterer = async(Job, Wilaya, Type)=>{
+            const res = await fetch('/Orders',{
+                method : "POST",
+                body : JSON.stringify({ Job, Wilaya, Type, id: 1 }),
+                headers : { 'Content-Type' : 'application/json'}
+            })
+            const reslut = await res.json();
+
+            /* if(reslut.filteredjob =="All"){
+                location.assign(`/Orders`)
+            }else{ */
+             location.assign(`/Orders?Type=${reslut.filteredType}&Job=${reslut.filteredjob}&Wilaya=${reslut.filteredWilaya}`)
+            
+        }
+    </script>
+    
+</body>
+</html>

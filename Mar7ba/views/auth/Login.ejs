@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/accoutauth.css">
+    <title><%= head_title %></title>
+</head>
+<body>
+    <%- include('../cmmn-things/mode.ejs') %>
+    <div class="container">
+    <div class="wrapper">
+        <div class="logo2"><a href="/"><%- include('../cmmn-things/logo.ejs') %></a></div>
+        <form class="authform" >
+            <div class="inputdiv">
+
+                <input type="text" name="Email" placeholder="Email">
+            </div>
+            <div class="err"></div>
+            <div class="inputdiv">
+            
+            <input type="password" name="Password" id="password" placeholder="Password">
+             </div>
+            <div class="err"></div>
+             <div class="inputdiv id2">
+                <a href="/auth/Sign-in">Don't have an account ?</a>
+                <button type="submit">Log in</button>
+             </div> 
+        </form>
+    </div>
+    </div>
+    <%- include('../cmmn-things/footer.ejs')%>
+    <script src="/script3(auth).js"></script>
+    <script>
+const form = document.querySelector('form');
+        const errplace = document.querySelectorAll('.err');
+        form.addEventListener('submit', async (e)=>{
+            e.preventDefault();
+            
+            const Email = form.Email.value;
+            const Password = form.Password.value;
+            
+             try {
+                 const res = await fetch('/auth/Log-in', {
+                     method : "POST",
+                     body : JSON.stringify({ Email , Password}),
+                     headers : { 'Content-Type' : 'application/json'}
+                 });
+                 const result = await res.json();       
+                    if (result.errors){
+                        errplace[0].textContent = result.errors.Email;
+                        errplace[1].textContent = result.errors.Password;
+                    }
+                    
+                       
+                        if(result.user == "Worker"){
+                            location.assign('/Profile')
+                        }
+                        if(result.user == "Client"){
+                            console.log('hihi')
+                            location.assign('/Orders')
+                        
+                    }
+             } catch (error) {
+                    console.log(error)
+                }
+              
+        })
+    </script>
+
+</body>
+</html>

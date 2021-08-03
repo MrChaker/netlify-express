@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/style.css">
+        <link rel="stylesheet" href="/accoutauth.css">
+        <title><%= head_title %></title>
+    </head>
+<body>
+    
+    <h1>Choose what you want to be</h1>
+    <div class="options">
+        <div class="option" data-doc="Worker">
+            <img src="https://image.flaticon.com/icons/png/512/3588/3588614.png" alt="Worker">
+            Worker
+        </div>
+        <div class="option" data-doc="Client">
+            <img src="https://image.flaticon.com/icons/png/512/1909/1909865.png" alt="client">
+            Client
+        </div>   
+    </div>
+    <script>
+        const option = document.querySelectorAll('.option');
+        option.forEach(option =>{
+            option.addEventListener('click', async ()=>{
+               
+                try {
+                    const res = await fetch('/auth/Choose', {
+                        method : "POST",
+                        body : JSON.stringify({type : option.dataset.doc}),
+                        headers : { 'Content-Type' : 'application/json'}
+                });
+                const result = await res.json();
+
+                if(option.dataset.doc === "Worker"){ 
+                     console.log('hhh')
+                    location.assign('/Profile')
+                }else if(option.dataset.doc === "Client"){
+                    console.log('hh')
+                    location.assign('/Orders')
+                }
+
+             /* console.log(Object.values(result)[0]);
+                if(Object.values(result)[0] === "Worker"){ 
+                     console.log('hhh')
+                    location.assign('/Profile')
+                }
+                if(Object.values(result)[0] === "Client"){
+                    console.log('hh')
+                    location.assign('/Orders')
+                } */
+                } catch (error) {
+                    console.log(error);
+                }
+            })
+
+        })
+        
+    </script>
+</body>
+
+</html>

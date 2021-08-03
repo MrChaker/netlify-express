@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./cmmn-things/head.ejs') %>
+<body>
+    <nav id="pointer">
+       <%- include('./cmmn-things/logo.ejs') %>
+    <ul >
+        <li class="act">Welcome</li>
+        <li>How it works</li>
+        <li>Services</a></li>
+    </ul>
+    <%if(!user){%>
+    <div class="auth">
+        <a href="/auth/log-in"><div class="authp">Log in</div></a>
+        <a href="/auth/Sign-in"><div class="authp btn">Sign in</div></a>
+    </div>
+    <%}else{%>   
+         <div class="conditional">
+            <div>
+                <% if (!user.image.path){%>
+                <img src="/images/account.png" alt="profileimg">
+                <%}else{ %>
+                <img src="<%= user.image.path %>" alt="profileimg">
+                <%}%>
+            </div>
+            <a href="/Profile"><%= user.username %></a>
+            <div class="drop"><img src="/images/down-arrow.png" alt="drop"></div>    
+        </div>    
+        <div class="dropmenu">
+            <a href="/Profile">Profile</a>
+            <a href="/Orders">Main page</a>
+           <a href="/auth/logout"><div class="btn">logout</div></a>
+   
+       </div>
+    <%}%>
+    </nav>
+    <!-- <div>
+        <img class="mode visible" src="/images/sun.svg" alt="mode" >
+        <img class="mode invisible"src="/images/moon.svg" alt="mode" >
+    </div> -->
+    <%- include('./cmmn-things/mode.ejs') %>
+    <main>
+        <section>
+            <div class="welcome">
+                <div class="start">
+                    <p>Get your work done <br> <span >any where any time<br>With the best working platform in Algeria</span> </p>                  
+                    <a href="/auth/Sign-in"><div class="btn btn1">Start now</div></a>
+                </div>
+                <div class="imgcont">
+                    <img src="/images/back.png" alt="background" class="animated fadeInRight">
+                </div>
+            </div>
+            <div class="how">            
+                <svg width="399" height="260" viewBox="0 0 399 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="200" y="17" width="56" height="33" fill="#F8460E" fill-opacity="0.34"/>
+                    <rect x="126" y="70" width="56" height="33" fill="#F8460E" fill-opacity="0.34"/>
+                    <rect x="242" y="95" width="56" height="33" fill="#F8460E" fill-opacity="0.34"/>
+                    <rect x="172" y="227" width="56" height="33" fill="#F8460E" fill-opacity="0.34"/>
+                    <rect x="343" y="140" width="56" height="33" fill="#F8460E" fill-opacity="0.34"/>
+                    <rect x="89" width="56" height="33" fill="#F8460E" fill-opacity="0.34"/>
+                    <rect y="70" width="56" height="33" fill="#C4C4C4" fill-opacity="0.35"/>
+                    </svg>
+                <h1>How it works</h1>
+                <div class="howsteps">
+                    <div class="contentwr">
+                        <p>You have a <span class="span2">problem ?</span><br>
+                            <span  class="span1">With us , you will get what you need , first things first 
+                                create an <span class="span2">account</span> .</span>
+                        </p>
+                    </div>
+                    <img src="/images/first_illustrator.png" alt="ill1" class="ill animated">
+                    <img src="/images/second_illustrator.png" alt="ill2" class="ill animated">
+                    <div class="contentwr">
+                        <p>Search for the <span class="span2">Hirafi</span> you need<br>
+                            <span class="span1"> Here you’ll find diffrent 
+                                artisans in diffrent domains, 
+                                Choose the right guy and
+                                contact him .                         
+                            </span>
+                        </p>
+                    </div>         
+                    <div class="contentwr">         
+                        <p>Your happy with the <span class="span2">service</span> ??<br>
+                            <span class="span1">Give the <span class="span2">Hirafi</span> a smile , you can rate him for his work .</span>
+                        </p>
+                    </div>
+                    <img src="/images/third_illustrator.png" alt="ill3" class="ill animated">
+                </div>
+            </div>
+            <div class="services">
+                <h1>Services</h1>
+                <div class="sercont">
+                    <a href="/Orders?Type=All&Job=Builder&Wilaya=All">
+                    <div class="service">
+                            <img src="/images/BuilderIcon.png" alt="Builder">
+                            <h2>Builder</h2>              
+                    </div> 
+                    </a>
+                    <a href="/Orders?Type=All&Job=Plumber&Wilaya=All">
+                    <div class="service">
+                            <img src="/images/PlumberIcon.png" alt="Plumber">
+                            <h2>Plumber</h2>                      
+                    </div> 
+                    </a>   
+                    <a href="/Orders?Type=All&Job=Painter&Wilaya=All">                   
+                        <div class="service">
+                            <img src="/images/PainterIcon.png" alt="Painter">
+                            <h2>Painter</h2>                       
+                    </div>  
+                    </a>
+                    <a href="/Orders?Type=All&Job=Electrician&Wilaya=All">                     
+                        <div class="service">
+                                <img src="/images/ElectricianIcon.png" alt="elec">                      
+                                <h2>Electrician</h2>
+                        </div> 
+                    </a> 
+                   <a href="/Orders?Type=All&Job=Chef&Wilaya=All">
+                    <div class="service">
+                            <img src="/images/ChefIcon.png" alt="chef">                
+                            <h2>Chef</h2>
+                    </div> 
+                    </a>   
+                    <a href="/Orders?Type=All&Job=Mechanic&Wilaya=All">
+                    <div class="service">
+                            <img src="/images/MechanicIcon.png" alt="Mech">
+                            <h2>Mechanic</h2>
+                    </div> 
+                    </a>
+                </div>
+                <a href="/Orders" class="a">
+                    <div class="btn btn2">See more</div>
+                </a>
+            </div>
+        </section>
+        <%- include('./cmmn-things/footer.ejs')%>
+    </main>
+    <script src="/jquery.js"></script>
+    <script src="/script.js"></script>
+    <script src="/navscript.js"></script>
+
+</body>
+</html>

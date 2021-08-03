@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/accoutauth.css">
+    <title><%= head_title %></title>
+</head>
+<body>
+    <%- include('../cmmn-things/mode.ejs') %>
+    <div class="container">
+    <div class="wrapper">
+        <div class="logo2"><a href="/"><%- include('../cmmn-things/logo.ejs') %></a></div>
+
+        <form class="authform" >
+            <div class="inputdiv">
+
+                <input type="text" name="username" id="username" placeholder="Username" required>
+            </div>
+            <div class="err"></div>
+            <div class="inputdiv">
+            
+                 <input type="text" name="Email" id="email" placeholder="email" required>
+            </div>
+            <div class="err"></div>
+            <div class="inputdiv">
+                <input type="password" name="Password" id="password" placeholder="Password" required>
+            </div>
+            <div class="err"></div>
+            <div class="inputdiv"> 
+                <input type="password" name="C_Password" id="confirm-password" placeholder="confirm password" required>
+            </div>
+            <div class="err"></div>
+            <div class="er">Choose your role :</div>
+
+            <div class="inputdiv radio">
+                <input type="radio" id="Worker" name="type" value="Worker" required>
+                <label for="Worker">Worker</label><br>
+                <input type="radio" id="Client" name="type" value="Client" required>
+                <label for="Client">Client</label><br>
+            </div>
+            <div class="inputdiv id2">
+                <button type="submit">Sign in</button>
+                <a href="/auth/Log-in">Alrealy have an account ?</a>
+            </div>
+            
+        </form>
+    </div>
+    </div>
+    <%- include('../cmmn-things/footer.ejs')%>
+    <script src="/script3(auth).js"></script>
+    <script>
+        const form = document.querySelector('form');
+        const errplace = document.querySelectorAll('.err');
+        form.addEventListener('submit', async (e)=>{
+            e.preventDefault();
+            
+            const username = form.username.value;
+            const Email = form.Email.value;
+            const Password = form.Password.value;
+            const C_Password = form.C_Password.value;
+            const Type = form.type.value;
+            errplace[0].textContent = "";
+            errplace[1].textContent = "";
+            errplace[2].textContent = "";
+            if (C_Password != Password){
+                errplace[3].textContent = "Passwords don't match";
+            }else{
+                errplace[3].textContent = "";
+                try {
+                    const res = await fetch('/auth/Sign-in', {
+                        method : "POST",
+                        body : JSON.stringify({ username ,Email , Password, Type}),
+                        headers : { 'Content-Type' : 'application/json'}
+                    });
+                    const result = await res.json();       
+                    if (result.errors){
+                        errplace[0].textContent = result.errors.username;
+                        errplace[1].textContent = result.errors.Email;
+                        errplace[2].textContent = result.errors.Password;
+                    }
+                    console.log(result.user.Type);
+                    
+                        if(result.user == "Worker"){
+                            location.assign('/Profile')
+                        }
+                        if(result.user == "Client"){
+                            location.assign('/Orders')
+                        }
+                    
+                } catch (error) {
+                    console.log(error)
+                }
+            }   
+        })
+    </script> 
+</body>
+</html>
