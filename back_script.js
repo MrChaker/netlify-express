@@ -4,7 +4,7 @@ const cookieparser = require('cookie-parser');
 const offerrouter = require('./routes/offerroutes')
 const auth = require('./routes/authroutes');
 const admin = require('./routes/adminroute');
-const socket = require('socket.io');
+
 const profilerouter = require('./routes/profileroute');
 const { Checkuser} = require('./middleware/authmiddleware');
 
