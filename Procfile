@@ -1,1 +1,1 @@
-web : node Mar7ba/back_script.js
+web : npm start

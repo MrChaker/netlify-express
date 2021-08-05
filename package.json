@@ -13,5 +13,17 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.12"
-  }
+  },
+  "scripts": {
+    "start": "node back_script"
+  },
+  
+    "name": "myapp",
+    "description": "a really cool app",
+    "version": "1.0.0",
+    "engines": {
+      "node": "14.x"
+    }
+  
 }
+
